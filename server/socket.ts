@@ -13,9 +13,9 @@ export class Socket {
             let tcp = net.createConnection(port, ip);
             tcp.on('connect', () => {
                this.tcpSockets.push(tcp);
-               // log.Info('Successfully connected to ' + socket.remoteAddress + ':' + socket.remotePort);
+               console.info('Successfully opened tcp socket to ' + ip + ':' + port)
                tcp.on('data', (data: Buffer) => {
-                  console.log('Data from server ' + ip + ':' + port + ' - ' + data.toString('hex'));
+                  console.log('Data from server - ' + data.toString('hex'));
                   wsServer.emit('serverData', data.buffer);
                });
                resolve(tcp);
@@ -27,7 +27,7 @@ export class Socket {
     }
     public Send(tcp: net.Socket, data: Buffer): Promise<any> {
         return new Promise((resolve, reject) => {
-            console.log('Data from Client - ' + data.toString('hex'));
+            console.log('Data from client - ' + data.toString('hex'));
             tcp.write(data, () => {
                 resolve();
             });
