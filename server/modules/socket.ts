@@ -1,39 +1,40 @@
 import * as net from 'net';
 import * as server from './server';
-import * as log from '@ccroy/log';
 
 export type SocketHandle = number;
 
 export class Socket {
-    private sockets: net.Socket[] = [];
+    private tcpSockets: net.Socket[] = [];
     constructor(
     ) {
     }
-    public Create(receivedDataCallback: (data: Buffer) => void, ip: string, port: number): Promise<net.Socket> {
+    public Create(wsServer: any, ip: string, port: number): Promise<net.Socket> {
         return new Promise((resolve, reject) => {
-            let socket = net.createConnection(port, ip);
-            socket.on('connect', () => {
-               this.sockets.push(socket);
+            let tcp = net.createConnection(port, ip);
+            tcp.on('connect', () => {
+               this.tcpSockets.push(tcp);
                // log.Info('Successfully connected to ' + socket.remoteAddress + ':' + socket.remotePort);
-               socket.on('data', (data: Buffer) => {
-                  log.Debug('Data received on ' + ip + ':' + port + ' - ' + data.toString('hex'));
-                  receivedDataCallback(data);
+               tcp.on('data', (data: Buffer) => {
+                  console.log('Data from server ' + ip + ':' + port + ' - ' + data.toString('hex'));
+                  wsServer.emit('serverData', data.buffer);
                });
-               resolve(socket);
+               resolve(tcp);
             });
-            socket.on('error', e => {
+            tcp.on('error', e => {
                reject('Socket connection failure! ' + e);
             });
         });
     }
-    public Send(socket: net.Socket, packet: Buffer): Promise<any> {
+    public Send(tcp: net.Socket, data: Buffer): Promise<any> {
         return new Promise((resolve, reject) => {
-            socket.write(packet, () => {
-                  resolve();              
+            console.log('Data from Client - ' + data.toString('hex'));
+            tcp.write(data, () => {
+                resolve();
             });
         });
     }
-    public Destroy(socket: net.Socket) {
-      socket.destroy();
+    public Destroy(tcp: net.Socket) {
+        tcp.destroy();
+        delete this.tcpSockets[this.tcpSockets.indexOf(tcp)];
     }
 }

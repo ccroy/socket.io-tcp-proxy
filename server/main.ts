@@ -10,23 +10,23 @@ import { Socket } from './modules/socket';
 /*********************************** SERVER ***********************************/
 /******************************************************************************/
 /*********************************** Setup ************************************/
-let tcpSock = new Socket();
-let sock: net.Socket | null = null;
+let socket = new Socket();
+let tcp: net.Socket | null = null;
 
-wsServer.sockets.on('connection', socket => {
-   socket.on('clientData', (data: string) => {
-      tcpSock.Send(sock as net.Socket, Buffer.from(data))
-      .catch(e => console.log(e));
+wsServer.sockets.on('connection', webSocket => {
+    webSocket.on('create', (create: any) => {
+        socket.Create(wsServer, create.ip, create.port)
+        .then((newSock) => tcp = newSock)
+        .catch(e => console.log(e));  
+     })
+    webSocket.on('clientData', (data: ArrayBuffer) => {
+        if(tcp) {
+          socket.Send(tcp as net.Socket, Buffer.from(data))
+          .catch(e => console.log(e));
+        } else {
+            console.log('Could not send client data, socket not configured');
+        }
    });
-   socket.on('create', (create: any) => {
-      tcpSock.Create(ForwardResponse, create.ip, create.port)
-      .then((newSock) => sock = newSock)
-      .catch(e => console.log(e));  
-   })
 })
 
-function ForwardResponse(data: Buffer) {
-   wsServer.emit('serverData', new Uint8Array(data.buffer));
-}
-
-app.use('/', router);
+app.use('/', router); // for testing proxy connection
