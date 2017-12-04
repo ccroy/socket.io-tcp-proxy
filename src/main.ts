@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 // Universal Dependencies
 import * as net from 'net';
 // Project-Specific Dependencies
