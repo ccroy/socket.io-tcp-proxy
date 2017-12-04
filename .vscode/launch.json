@@ -7,10 +7,10 @@
       {
          "type": "node",
          "request": "launch",
-         "name": "Launch Program",
+         "name": "Debug",
          "program": "${workspaceRoot}/server/main.ts",
          "outFiles": [
-            "${workspaceRoot}/lib/**/*.js"
+            "${workspaceRoot}/bin/debug/**/*.js"
          ],
          "cwd": "${workspaceRoot}/server"
       }

@@ -1,22 +1,21 @@
 {
-  "name": "sockette",
+  "name": "socket.io-tcp-proxy",
   "version": "0.0.1",
-  "private": true,
-  "description": "Middleman between websockets and TCP sockets, basically acting as a TCP socket proxy for web apps.",
-  "main": "lib/main",
-  "types": "lib/main",
+  "description": "TCP proxy for socket.io websockets.",
+  "main": "bin/release",
+  "license": "MIT",
   "scripts": {
-    "start": "npm run build:live",
-    "build:live": "cd server & nodemon --exec ts-node main.ts --inspect"
+    "debug": "tsc -p tsdebug.json",
+    "release": "tsc -p tsconfig.json"
   },
   "author": "Chris Croy",
   "dependencies": {
-    "nodemon": "^1.11.0",
     "socket.io": "^2.0.3"
   },
   "devDependencies": {
     "@types/node": "^8.0.5",
     "@types/socket.io": "^1.4.31",
+    "nodemon": "^1.11.0",
     "ts-node": "^3.1.0",
     "typescript": "^2.4.1"
   }
