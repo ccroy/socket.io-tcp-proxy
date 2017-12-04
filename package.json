@@ -1,6 +1,6 @@
 {
   "name": "socket.io-tcp-proxy",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "TCP proxy for socket.io websockets.",
   "main": "bin/release",
   "license": "MIT",
@@ -12,6 +12,9 @@
     "debug": "tsc -p tsdebug.json",
     "release": "tsc -p tsconfig.json"
   },
+  "keywords": [
+    "ionic", "cordova", "websocket", "socket", "tcp", "proxy"
+  ],
   "author": "Chris Croy",
   "dependencies": {
     "socket.io": "^2.0.3"
