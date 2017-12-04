@@ -26,7 +26,7 @@ git clone https://github.com/ccroy/socket.io-tcp-proxy.git
 
 ## Command line interface
 
-Start the program from the cli as `bin/socket.io-tcp-proxy`. It accepts the following arguments:
+Start the program from the cli as **sitp**. It accepts the following arguments:
 
 - `-port <port number>`: Sets the port that the WebSocket will connect to.
 

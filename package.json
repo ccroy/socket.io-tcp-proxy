@@ -1,11 +1,11 @@
 {
   "name": "socket.io-tcp-proxy",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "TCP proxy for socket.io websockets.",
   "main": "bin/release",
   "license": "MIT",
   "bin": {
-    "socket.io-tcp-proxy": "./bin/release/main.js"
+    "sitp": "./bin/release/main.js"
   },
   "scripts": {
     "start": "npm run release & node ./bin/release/main",
