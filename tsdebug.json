@@ -10,7 +10,7 @@
       "sourceMap": true /* Emit a single file with source maps instead of having a separate file. */
    },
    "include": [
-      "server/**/*"
+      "src/**/*"
    ],
    "exclude": [
       "node_modules"
