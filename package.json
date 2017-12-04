@@ -5,6 +5,7 @@
   "main": "bin/release",
   "license": "MIT",
   "scripts": {
+    "start": "npm run release & node ./bin/release/main",
     "debug": "tsc -p tsdebug.json",
     "release": "tsc -p tsconfig.json"
   },
