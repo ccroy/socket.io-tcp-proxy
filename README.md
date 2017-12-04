@@ -8,6 +8,28 @@ TCP proxy server for socket.io websockets.
 
 Spins up a node server locally on port 8080 by default. Connect to this using socket.io WebSockets to send and receive data to/from a TCP endpoint.
 
+## Installation
+
+The easiest way to install socket.io-tcp-proxy is with [`npm`][npm].
+
+[npm]: http://npmjs.org
+
+```sh
+npm install -g socket.io-tcp-proxy
+```
+
+Alternately, download the source.
+
+```sh
+git clone https://github.com/ccroy/socket.io-tcp-proxy.git
+```
+
+## Command line interface
+
+Start the program from the cli as `bin/socket.io-tcp-proxy`. It accepts the following arguments:
+
+- `-port <port number>`: Sets the port that the WebSocket will connect to.
+
 ## Usage
 
 1. Connect to server from web app.
@@ -42,28 +64,6 @@ Example:
 ```JavaScript
 ws.emit('clientData', arraybuffer);
 ```
-
-## Installation
-
-The easiest way to install socket.io-tcp-proxy is with [`npm`][npm].
-
-[npm]: http://npmjs.org
-
-```sh
-npm install socket.io-tcp-proxy
-```
-
-Alternately, download the source.
-
-```sh
-git clone https://github.com/ccroy/socket.io-tcp-proxy.git
-```
-
-## Command line interface
-
-The `bin/socket.io-tcp-proxy` is a socket.io WebSocket to tcp proxy server. It accepts the following arguments:
-
-- `-port <port number>`: Sets the port that the WebSocket will connect to.
 
 ## License
 
